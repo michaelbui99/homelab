@@ -1,0 +1,35 @@
+# NOTE: (mibui 2024-04-27) This playbook will not be responsible for setting up a appropriate container runtime.
+- name: Setup kubeadm tooling
+  hosts: allhosts
+  become: true
+  tasks:
+      - name: set SELinux to permissive mode
+        ansible.builtin.shell: |
+            sudo setenforce 0
+            sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+            exit 0
+
+      - name: add k8s repository
+        ansible.builtin.shell: |
+            cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+            [kubernetes]
+            name=Kubernetes
+            baseurl=https://pkgs.k8s.io/core:/stable:/v1.30/rpm/
+            enabled=1
+            gpgcheck=1
+            gpgkey=https://pkgs.k8s.io/core:/stable:/v1.30/rpm/repodata/repomd.xml.key
+            exclude=kubelet kubeadm kubectl cri-tools kubernetes-cni
+            EOF
+
+      - name: install tooling
+        ansible.builtin.dnf:
+            update_cache: true
+            name:
+                - kubelet
+                - kubeadm
+                - kubectl
+            disable_excludes: kubernetes
+            state: latest
+
+      - name: start kubelet
+        ansible.builtin.shell: sudo systemctl enable --now kubelet

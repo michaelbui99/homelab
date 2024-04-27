@@ -1,3 +1,4 @@
+# NOTE: (mibui 2024-04-27) Swap must be disabled for kubelet to work correctly
 - name: Disable swap
   hosts: allhosts
   become: true

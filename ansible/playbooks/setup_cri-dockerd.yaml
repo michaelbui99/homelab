@@ -1,0 +1,71 @@
+- name: Setup go
+  hosts: allhosts
+  become: true
+  vars:
+      go_tar: "go1.22.2.linux-amd64.tar.gz"
+      tar_path: "{{ ansible_env.HOME }}/{{ go_tar }}"
+      profile: "{{ ansible_env.HOME }}/.bash_profile"
+  tasks:
+      - name: ensure no previous tarball
+        ansible.builtin.file:
+            path: "{{ tar_path }}"
+            state: absent
+
+      - name: get go tar
+        ansible.builtin.get_url:
+            url: https://go.dev/dl/go1.22.2.linux-amd64.tar.gz
+            dest: "{{ tar_path }}"
+
+      - name: remove previous installation
+        ansible.builtin.shell: "sudo rm -rf /usr/local/go && tar -C /usr/local -xzf go1.22.2.linux-amd64.tar.gz"
+
+      - name: ensure go bin in path
+        ansible.builtin.lineinfile:
+            path: "{{ profile }}"
+            regexp: "export PATH=\\$PATH:\/usr\/local\/go\/bin"
+            line: "export PATH=$PATH:/usr/local/go/bin"
+
+      - name: source profile
+        ansible.builtin.shell: source {{ profile }}
+
+- name: Setup cri-dockerd
+  hosts: allhosts
+  become: true
+  vars:
+      clonedir: "{{ ansible_env.HOME }}/cri-dockerd"
+      profile: "{{ ansible_env.HOME }}/.bash_profile"
+  tasks:
+      - name: ensure necessary tools are installed
+        ansible.builtin.dnf:
+            name:
+                - git
+                - make
+                - gcc
+            state: latest
+
+      - name: ensure clone dir is clean
+        ansible.builtin.file:
+            path: "{{ clonedir }}"
+            state: absent
+
+      - name: clone repo
+        ansible.builtin.shell: |
+            git clone https://github.com/Mirantis/cri-dockerd.git
+        args:
+            chdir: "{{ ansible_env.HOME}}"
+
+      - name: build
+        ansible.builtin.shell: source {{ profile }} && cd {{ clonedir }} && make cri-dockerd
+        args:
+            chdir: "{{ clonedir }}"
+
+      - name: install
+        ansible.builtin.shell: |
+            mkdir -p /usr/local/bin
+            install -o root -g root -m 0755 cri-dockerd /usr/local/bin/cri-dockerd
+            install packaging/systemd/* /etc/systemd/system
+            sed -i -e 's,/usr/bin/cri-dockerd,/usr/local/bin/cri-dockerd,' /etc/systemd/system/cri-docker.service
+            systemctl daemon-reload
+            systemctl enable --now cri-docker.socket
+        args:
+            chdir: "{{ clonedir }}"
