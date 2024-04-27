@@ -1,0 +1,31 @@
+- name: Setup vim
+  hosts: allhosts
+  vars:
+      vimrc: "{{ ansible_env.HOME }}/.vimrc"
+  tasks:
+      - name: install vim
+        ansible.builtin.dnf:
+            name: vim
+            state: latest
+
+      - name: ensure clean .vimrc
+        ansible.builtin.file:
+            path: "{{ vimrc }}"
+            state: absent
+
+      - name: create .vimrc
+        ansible.builtin.file:
+            path: "{{ vimrc }}"
+            state: touch
+
+      - name: setup .vimrc
+        ansible.builtin.shell: |
+            echo "set number" >> ~/.vimrc
+            echo "set relativenumber" >> ~/.vimrc
+            echo "set ignorecase" >> ~/.vimrc
+            echo "set smartcase" >> ~/.vimrc
+            echo "set scrolloff=3" >> ~/.vimrc
+            echo "set expandtab" >> ~/.vimrc
+            echo "set tabstop=4" >> ~/.vimrc
+            echo "set softtabstop=4" >> ~/.vimrc
+            exit 0

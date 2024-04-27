@@ -1,0 +1,9 @@
+- name: "Update"
+  hosts: allhosts
+  become: true
+  tasks:
+      - name: dnf
+        ansible.builtin.dnf:
+            update_cache: true
+            name: "*"
+            state: latest
