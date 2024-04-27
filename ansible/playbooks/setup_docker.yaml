@@ -1,0 +1,37 @@
+- name: Setup Docker
+  hosts: allhosts
+  become: true
+  tasks:
+      - name: remove old versions
+        ansible.builtin.dnf:
+            name:
+                - docker
+                - docker-client
+                - docker-client-latest
+                - docker-common
+                - docker-latest
+                - docker-latest-logrotate
+                - docker-logrotate
+                - docker-selinux
+                - docker-engine-selinux
+                - docker-engine
+            state: absent
+
+      - name: setup repository
+        ansible.builtin.shell: |
+            sudo dnf -y install dnf-plugins-core
+            sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+            exit 0
+
+      - name: install packages
+        ansible.builtin.dnf:
+            name:
+                - docker-ce
+                - docker-ce-cli
+                - containerd.io
+                - docker-buildx-plugin
+                - docker-compose-plugin
+            state: latest
+
+      - name: start docker
+        ansible.builtin.shell: sudo systemctl start docker

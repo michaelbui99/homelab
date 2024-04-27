@@ -1,4 +1,4 @@
-- name: "Update"
+- name: Update
   hosts: allhosts
   become: true
   tasks:
