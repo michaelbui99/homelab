@@ -1,0 +1,10 @@
+# NOTE: (mibui 2024-04-28) Currently running Calico as CNI plugin, which requires firewalld to be disabled
+- name: Disable firewall
+  hosts: allhosts
+  become: true
+  tasks:
+      - name: stop
+        ansible.builtin.shell: systemctl stop firewalld
+
+      - name: disable
+        ansible.builtin.shell: systemctl disable firewalld
