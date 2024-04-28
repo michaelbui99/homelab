@@ -14,10 +14,7 @@
             mode: "0777"
 
       - name: extract containerd
-        ansible.builtin.unarchive:
-            src: "{{ ansible_env.HOME }}/{{ tar }}"
-            remote_src: true
-            dest: "/usr/local/"
+        ansible.builtin.shell: tar Cxzvf /usr/local {{ ansible_env.HOME }}/{{ tar }}
 
       - name: cleanup tar
         ansible.builtin.file:
@@ -77,10 +74,7 @@
             mode: "0755"
 
       - name: extract
-        ansible.builtin.unarchive:
-            src: "{{ ansible_env.HOME }}/{{ tar }}"
-            remote_src: true
-            dest: "/opt/cni/bin/"
+        ansible.builtin.shell: tar Cxzvf /opt/cni/bin {{ ansible_env.HOME}}/{{ tar }}
 
       - name: cleanup tar
         ansible.builtin.file:

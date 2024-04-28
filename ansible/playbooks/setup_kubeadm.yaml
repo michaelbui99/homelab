@@ -21,6 +21,9 @@
             exclude=kubelet kubeadm kubectl cri-tools kubernetes-cni
             EOF
 
+      - name: enable kernel IP forwarding
+        ansible.builtin.shell: echo 1 > /proc/sys/net/ipv4/ip_forward
+
       - name: install tooling
         ansible.builtin.dnf:
             update_cache: true
@@ -28,6 +31,7 @@
                 - kubelet
                 - kubeadm
                 - kubectl
+                - iproute-tc
             disable_excludes: kubernetes
             state: latest
 
