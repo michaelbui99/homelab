@@ -3,6 +3,14 @@
   hosts: allhosts
   become: true
   tasks:
+      # NOTE: (mibui 2024-04-28) Fedora enables swap on ZRAM by default, so we need to uninstall it
+      #                          to properly disable swap.
+      - name: remove zram
+        ansible.builtin.dnf:
+            name:
+                - zram-generator-defaults
+            state: absent
+
       - name: Disable swap for current session
         command: swapoff -a
         become: true
