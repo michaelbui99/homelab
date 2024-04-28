@@ -28,6 +28,11 @@
       - name: source profile
         ansible.builtin.shell: source {{ profile }}
 
+      - name: cleanup tar
+        ansible.builtin.file:
+            path: "{{ tar_path }}"
+            state: absent
+
 - name: Setup cri-dockerd
   hosts: allhosts
   become: true
@@ -69,3 +74,8 @@
             systemctl enable --now cri-docker.socket
         args:
             chdir: "{{ clonedir }}"
+
+      - name: cleanup repo
+        ansible.builtin.file:
+            path: "{{ clonedir }}"
+            state: absent

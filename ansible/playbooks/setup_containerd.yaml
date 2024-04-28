@@ -1,0 +1,95 @@
+- name: Install containerd runtime
+  hosts: allhosts
+  become: true
+  vars:
+      platform: "linux-amd64"
+      version: "1.7.16"
+      tar: "containerd-{{ version }}-{{ platform }}.tar.gz"
+      download_url: "https://github.com/containerd/containerd/releases/download/v{{ version }}/{{ tar }}"
+  tasks:
+      - name: fetch containerd tar
+        ansible.builtin.get_url:
+            url: "{{ download_url }}"
+            dest: "{{ ansible_env.HOME }}/{{ tar }}"
+            mode: "0777"
+
+      - name: extract containerd
+        ansible.builtin.unarchive:
+            src: "{{ ansible_env.HOME }}/{{ tar }}"
+            remote_src: true
+            dest: "/usr/local/"
+
+      - name: cleanup tar
+        ansible.builtin.file:
+            path: "{{ ansible_env.HOME }}/{{ tar }}"
+            state: absent
+
+      - name: download service unit file
+        ansible.builtin.get_url:
+            url: "https://raw.githubusercontent.com/containerd/containerd/main/containerd.service"
+            dest: "/usr/lib/systemd/system/containerd.service"
+            force: true
+
+      - name: enable containerd
+        ansible.builtin.shell: |
+            systemctl daemon-reload
+            systemctl enable --now containerd
+
+- name: Install runc
+  hosts: allhosts
+  become: true
+  vars:
+      architecture: "amd64"
+      version: "1.2.0-rc.1"
+      download_url: "https://github.com/opencontainers/runc/releases/download/v{{ version }}/runc.{{ architecture }}"
+  tasks:
+      - name: download tar
+        ansible.builtin.get_url:
+            url: "{{ download_url }}"
+            dest: "{{ ansible_env.HOME }}/runc.{{ architecture }}"
+
+      - name: install
+        ansible.builtin.shell: "install -m 755 runc.{{ architecture }} /usr/local/sbin/runc"
+
+      - name: cleanup tar
+        ansible.builtin.file:
+            path: "{{ ansible_env.HOME }}/runc.{{ architecture }}"
+            state: absent
+
+- name: install CNI plugins
+  hosts: allhosts
+  become: true
+  vars:
+      platform: "linux-amd64"
+      version: "1.4.1"
+      tar: "cni-plugins-{{ platform }}-v{{ version }}.tgz"
+      download_url: "https://github.com/containernetworking/plugins/releases/download/v{{ version }}/{{ tar }}"
+  tasks:
+      - name: download tar
+        ansible.builtin.get_url:
+            url: "{{ download_url }}"
+            dest: "{{ ansible_env.HOME }}/{{ tar }}"
+
+      - name: ensure extract dir exists
+        ansible.builtin.file:
+            path: "/opt/cni/bin"
+            state: "directory"
+            mode: "0755"
+
+      - name: extract
+        ansible.builtin.unarchive:
+            src: "{{ ansible_env.HOME }}/{{ tar }}"
+            remote_src: true
+            dest: "/opt/cni/bin/"
+
+      - name: cleanup tar
+        ansible.builtin.file:
+            path: "{{ ansible_env.HOME }}/{{ tar }}"
+            state: absent
+
+- name: Start containerd
+  hosts: allhosts
+  become: true
+  tasks:
+      - name: start service
+        ansible.builtin.shell: systemctl start containerd
