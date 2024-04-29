@@ -1,0 +1,8 @@
+- name: Enable IP forwarding
+  ansible.builtin.import_playbook: enable_ipforward.yaml
+
+- name: Disable Swap
+  ansible.builtin.import_playbook: disable_swap.yaml
+
+- name: Disable Firewall
+  ansible.builtin.import_playbook: disable_firewall.yaml
