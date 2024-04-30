@@ -5,13 +5,12 @@ metadata:
     namespace: argocd
 spec:
     rules:
-        - host: argocd.mibui.com
-          http:
+        - http:
               paths:
-                  - path: /
+                  - path: /argocd
                     pathType: Prefix
                     backend:
                         service:
-                            name: argocd-server-lb
+                            name: argocd-server
                             port:
                                 number: 80
