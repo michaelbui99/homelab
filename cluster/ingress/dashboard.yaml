@@ -6,11 +6,12 @@ metadata:
 spec:
     rules:
         - host: traefik.localhost
-          paths:
-              - path: /dashboard
-                pathType: Prefix
-                backend:
-                    service:
-                        - name: traefik-dashboard-service
-                          port:
-                              number: 8080
+          http:
+              paths:
+                  - path: /dashboard
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: traefik-dashboard-service
+                            port:
+                                number: 8080
