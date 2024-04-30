@@ -5,9 +5,10 @@ metadata:
     namespace: argocd
 spec:
     rules:
-        - http:
+        - host: argocd.mibui.homelab
+          http:
               paths:
-                  - path: /argocd
+                  - path: /
                     pathType: Prefix
                     backend:
                         service:
