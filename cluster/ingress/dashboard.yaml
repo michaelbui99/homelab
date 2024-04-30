@@ -1,14 +1,16 @@
 apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
+kind: Ingress
 metadata:
-  name: dashboard
-  namespace: traefik-ingress
+    name: dashboard
+    namespace: traefik-ingress
 spec:
-  entryPoints:
-    - web
-  routes:
-    - match: Host(`traefik.localhost`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
-      kind: Rule
-      services:
-        - name: api@internal
-          kind: TraefikService
+    rules:
+        - host: traefik.localhost
+          paths:
+              - path: /dashboard
+                pathType: Prefix
+                backend:
+                    service:
+                        - name: traefik-dashboard-service
+                          port:
+                              number: 8080
