@@ -1,0 +1,43 @@
+<mxfile host="app.diagrams.net" modified="2024-05-01T18:16:47.947Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="zv88M0G2kR5ex_rZELLB" version="22.1.19" type="device">
+  <diagram name="Page-1" id="wKgg8Fl04FZFq_M2m4WP">
+    <mxGraphModel dx="984" dy="574" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="qTtv4fH4WaHA5Ym2hxDb-12" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;dashed=1;strokeWidth=2;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="70" width="780" height="610" as="geometry" />
+        </mxCell>
+        <mxCell id="qTtv4fH4WaHA5Ym2hxDb-2" value="&lt;b&gt;&lt;font color=&quot;#030101&quot;&gt;Modem / Router&lt;br&gt;192.168.0.1/24&lt;/font&gt;&lt;/b&gt;" style="fontColor=#0066CC;verticalAlign=top;verticalLabelPosition=bottom;labelPosition=center;align=center;html=1;outlineConnect=0;fillColor=#CCCCCC;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.wireless_modem;" vertex="1" parent="1">
+          <mxGeometry x="110" y="312.5" width="100" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="qTtv4fH4WaHA5Ym2hxDb-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" edge="1" parent="1" source="qTtv4fH4WaHA5Ym2hxDb-3" target="qTtv4fH4WaHA5Ym2hxDb-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qTtv4fH4WaHA5Ym2hxDb-3" value="&lt;b&gt;&lt;font color=&quot;#000912&quot;&gt;Proxmox Server&lt;br&gt;192.168.0.42&lt;/font&gt;&lt;br&gt;&lt;/b&gt;" style="fontColor=#0066CC;verticalAlign=top;verticalLabelPosition=bottom;labelPosition=center;align=center;html=1;outlineConnect=0;fillColor=#CCCCCC;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.desktop_pc;" vertex="1" parent="1">
+          <mxGeometry x="353" y="310" width="46" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="qTtv4fH4WaHA5Ym2hxDb-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=1;endArrow=none;endFill=0;" edge="1" parent="1" source="qTtv4fH4WaHA5Ym2hxDb-2" target="qTtv4fH4WaHA5Ym2hxDb-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qTtv4fH4WaHA5Ym2hxDb-8" value="&lt;font color=&quot;#000000&quot;&gt;&lt;b&gt;VM&lt;br&gt;controlplane01&lt;br&gt;192.168.0.50&lt;/b&gt;&lt;/font&gt;" style="fontColor=#0066CC;verticalAlign=top;verticalLabelPosition=bottom;labelPosition=center;align=center;html=1;outlineConnect=0;fillColor=#CCCCCC;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.pc;" vertex="1" parent="1">
+          <mxGeometry x="570" y="160" width="100" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="qTtv4fH4WaHA5Ym2hxDb-9" value="&lt;font color=&quot;#000305&quot;&gt;&lt;b&gt;VM&lt;br&gt;worker01&lt;br&gt;192.168.0.51&lt;/b&gt;&lt;/font&gt;" style="fontColor=#0066CC;verticalAlign=top;verticalLabelPosition=bottom;labelPosition=center;align=center;html=1;outlineConnect=0;fillColor=#CCCCCC;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.pc;" vertex="1" parent="1">
+          <mxGeometry x="570" y="320" width="100" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="qTtv4fH4WaHA5Ym2hxDb-10" value="&lt;font color=&quot;#000000&quot;&gt;&lt;b&gt;VM&lt;br&gt;worker02&lt;br&gt;192.168.0.52&lt;/b&gt;&lt;/font&gt;" style="fontColor=#0066CC;verticalAlign=top;verticalLabelPosition=bottom;labelPosition=center;align=center;html=1;outlineConnect=0;fillColor=#CCCCCC;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.pc;" vertex="1" parent="1">
+          <mxGeometry x="570" y="490" width="100" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="qTtv4fH4WaHA5Ym2hxDb-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="1" source="qTtv4fH4WaHA5Ym2hxDb-3" target="qTtv4fH4WaHA5Ym2hxDb-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qTtv4fH4WaHA5Ym2hxDb-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="1" source="qTtv4fH4WaHA5Ym2hxDb-3" target="qTtv4fH4WaHA5Ym2hxDb-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qTtv4fH4WaHA5Ym2hxDb-18" value="&lt;font face=&quot;Helvetica&quot; style=&quot;font-size: 18px;&quot;&gt;&lt;b&gt;Homelab LAN&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="110" y="90" width="140" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

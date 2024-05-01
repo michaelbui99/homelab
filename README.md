@@ -13,3 +13,7 @@ List of some of the techonologies deployed to the cluster:
 -   ArgoCD
 -   MetalLB
 -   NGINX Ingress Controller
+
+## Network
+
+![Network](./doc/network.png)
