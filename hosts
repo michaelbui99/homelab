@@ -1,1 +1,2 @@
+# NOTE: (mibui 2024-05-01) copy to /etc/hosts for routing with hosts in ingress to work properlu
 192.168.0.100 argocd.local

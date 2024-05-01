@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+    namespace: monitoring
+    name: kube-prometheus-stack
+spec:
+    project: default
+    source:
+        chart: prometheus-community/kube-prometheus-stack
+        repoURL: https://prometheus-community.github.io/helm-charts
+        targetRevision: 58.2.2
+        helm:
+            releaseName: kube-prometheus-stack
+    destination:
+        server: "https://kubernetes.default.svc"
+        namespace: monitoring
