@@ -12,6 +12,7 @@ spec:
             - PruneLast=true
             - Replace=false
             - ApplyOutOfSyncOnly=true
+            - ServerSideApply=true
     source:
         chart: kube-prometheus-stack
         repoURL: https://prometheus-community.github.io/helm-charts
