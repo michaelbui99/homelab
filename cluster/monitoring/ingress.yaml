@@ -19,4 +19,4 @@ spec:
                         service:
                             name: kube-prometheus-stack-grafana
                             port:
-                                name: http
+                                number: 80
