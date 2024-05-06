@@ -22,6 +22,10 @@ spec:
             parameters:
                 - name: "granafa.ingress.enabled"
                   value: "true"
+                - name: "grafana.grafana.ini.server.domain"
+                  value: "grafana.local"
+                - name: "grafana.grafana.ini.server.root_url"
+                  value: "%(protocol)s://%(domain)s:%(http_port)s"
     destination:
         server: "https://kubernetes.default.svc"
         namespace: monitoring
