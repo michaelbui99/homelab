@@ -9,7 +9,7 @@ spec:
     source:
         repoURL: https://github.com/michaelbui99/homelab
         targetRevision: HEAD
-        path: cluster/argocd
+        path: cluster/argocd/resources
     destination:
         server: https://kubernetes.default.svc
         namespace: argocd
