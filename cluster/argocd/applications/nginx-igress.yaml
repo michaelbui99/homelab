@@ -8,7 +8,7 @@ spec:
     source:
         repoURL: https://github.com/michaelbui99/homelab
         targetRevision: HEAD
-        path: cluster/argocd/infrastructure/nginx
+        path: cluster/argocd/infrastructure/nginx-ingress
     destination:
         server: https://kubernetes.default.svc
         namespace: infrastructure
