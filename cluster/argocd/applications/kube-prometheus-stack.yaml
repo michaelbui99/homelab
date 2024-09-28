@@ -24,3 +24,4 @@ spec:
             - Replace=false
             - ApplyOutOfSyncOnly=true
             - ServerSideApply=true
+        automated: {}
