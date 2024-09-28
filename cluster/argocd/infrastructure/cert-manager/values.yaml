@@ -1,5 +1,4 @@
 cert-manager:
   namespace: infrastructure
-  installCRDs: true
   crds:
     enabled: true
