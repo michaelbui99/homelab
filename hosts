@@ -1,3 +1,4 @@
 # NOTE: (mibui 2024-05-01) copy to /etc/hosts for routing with hosts in ingress to work properlu
+# UPDATE: (mibui 2024-09-28) No longer required, since everything runs through the michaelbui.dk domain now.
 192.168.0.100 argocd.local
 192.168.0.100 grafana.local
