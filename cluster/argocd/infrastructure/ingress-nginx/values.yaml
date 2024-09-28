@@ -1,5 +1,8 @@
 ingress-nginx:
   controller:
     enableCustomResources: true
+    extraArgs:
+      enable-ssl-passthrough=
   ingressClassResource:
     default: true
+  
