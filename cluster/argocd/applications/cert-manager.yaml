@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+    name: cert-manager
+    namespace: argocd
+spec:
+    project: default
+    source:
+        repoURL: https://github.com/michaelbui99/homelab
+        targetRevision: HEAD
+        path: cluster/argocd/infrastructure/cert-manager
+        helm: 
+            releaseName: cert-manager
+            valuesFiles: 
+            - values.yaml
+    destination:
+        server: https://kubernetes.default.svc
+        namespace: infrastructure
+    syncPolicy:
+        syncOptions:
+            - CreateNamespace=true

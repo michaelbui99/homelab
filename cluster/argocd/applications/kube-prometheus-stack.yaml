@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+    name: kube-prometheus-stack
+    namespace: argocd
+spec:
+    project: default
+    source:
+        repoURL: https://github.com/michaelbui99/homelab
+        targetRevision: HEAD
+        path: cluster/argocd/infrastructure/prometheus
+        helm:
+            releaseName: prometheus
+            valueFiles:
+            - values.yaml
+    destination:
+        server: https://kubernetes.default.svc
+        namespace: infrastructure
+    syncPolicy:
+        syncOptions:
+            - CreateNamespace=true
+            - PrunePropagationPolicy=foreground
+            - PruneLast=true
+            - Replace=false
+            - ApplyOutOfSyncOnly=true
+            - ServerSideApply=true

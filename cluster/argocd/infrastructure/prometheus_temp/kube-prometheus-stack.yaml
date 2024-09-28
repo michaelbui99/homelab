@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+    namespace: argocd
+    name: kube-prometheus-stack
+spec:
+    project: default
+    syncPolicy:
+        syncOptions:
+            - CreateNamespace=true
+            - PrunePropagationPolicy=foreground
+            - PruneLast=true
+            - Replace=false
+            - ApplyOutOfSyncOnly=true
+            - ServerSideApply=true
+    source:
+        chart: kube-prometheus-stack
+        repoURL: https://prometheus-community.github.io/helm-charts
+        targetRevision: 58.3.1
+        helm:
+            releaseName: kube-prometheus-stack
+            parameters:
+                - name: "granafa.ingress.enabled"
+                  value: "true"
+                - name: "grafana.grafana.ini.server.domain"
+                  value: "grafana.local"
+                - name: "grafana.grafana.ini.server.root_url"
+                  value: "%(protocol)s://%(domain)s:%(http_port)s"
+    destination:
+        server: "https://kubernetes.default.svc"
+        namespace: infrastructure
