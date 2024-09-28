@@ -5,5 +5,5 @@ kube-prometheus-stack:
     grafana:
       ini:
         server:
-          domain: "grafana.local"
+          domain: "grafana.michaelbui.dk"
           root_url: "%(protocol)s://%(domain)s:%(http_port)s"
