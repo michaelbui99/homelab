@@ -13,7 +13,7 @@ spec:
   ingressClassName: nginx
   rules:
     - host: argocd.michaelbui.dk
-      https:
+      http:
         paths:
           - path: /
             pathType: Prefix
