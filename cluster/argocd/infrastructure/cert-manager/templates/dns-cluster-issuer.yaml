@@ -18,7 +18,7 @@ spec:
     - dns01:
         cloudflare:
           email: michaelbui99@hotmail.com
-          apiSecretRef:
+          apiTokenSecretRef:
             name: cloudflare-api-key
             key: key
       selector:
