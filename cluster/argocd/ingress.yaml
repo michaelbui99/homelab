@@ -6,7 +6,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    cert-manager.io/cluster-issuer: le-acme
 spec:
   ingressClassName: nginx
   rules:
@@ -19,4 +19,8 @@ spec:
               service:
                 name: argocd-server
                 port:
-                  name: http
+                  name: https
+  tls:
+  - hosts:
+    - argocd.michaelbui.dk
+    secretName: le-acme-argocd
