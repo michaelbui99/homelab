@@ -1,22 +1,27 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: grafana-ingress
-    namespace: monitoring
-    annotations:
-        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-        nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-        nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+  name: grafana-ingress
+  namespace: monitoring
+  annotations:
+    cert-manager.io/cluster-issuer: le-acme
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
-    ingressClassName: nginx
-    rules:
-        - host: grafana.michaelbui.dk
-          http:
-              paths:
-                  - path: /
-                    pathType: Prefix
-                    backend:
-                        service:
-                            name: kube-prometheus-stack-grafana
-                            port:
-                                number: 80
+  ingressClassName: nginx
+  rules:
+    - host: grafana.michaelbui.dk
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kube-prometheus-stack-grafana
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - grafana.michaelbui.dk
+      secretName: le-grafana-michaelbui-dk
