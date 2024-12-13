@@ -11,7 +11,7 @@ spec:
         path: cluster/infrastructure/cert-manager
         helm: 
             releaseName: cert-manager
-            valuesFiles: 
+            valueFiles: 
             - values.yaml
     destination:
         server: https://kubernetes.default.svc
@@ -19,3 +19,4 @@ spec:
     syncPolicy:
         syncOptions:
             - CreateNamespace=true
+        automated: {}
