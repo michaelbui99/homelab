@@ -20,8 +20,3 @@ spec:
         automated: {}
         syncOptions:
             - CreateNamespace=true
-            - PrunePropagationPolicy=foreground
-            - PruneLast=true
-            - Replace=false
-            - ApplyOutOfSyncOnly=true
-            - ServerSideApply=true
