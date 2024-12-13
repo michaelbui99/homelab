@@ -25,4 +25,4 @@ spec:
   tls:
   - hosts:
     - argocd.michaelbui.dk
-    secretName: le-acme-argocd
+    secretName: argocd-secret
