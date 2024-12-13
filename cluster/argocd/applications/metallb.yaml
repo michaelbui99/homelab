@@ -8,7 +8,7 @@ spec:
     source:
         repoURL: https://github.com/michaelbui99/homelab
         targetRevision: HEAD
-        path: cluster/argocd/infrastructure/metallb
+        path: cluster/infrastructure/metallb
     destination:
         server: https://kubernetes.default.svc
         namespace: infrastructure

@@ -8,7 +8,7 @@ spec:
     source:
         repoURL: https://github.com/michaelbui99/homelab
         targetRevision: HEAD
-        path: cluster/argocd/infrastructure/cert-manager
+        path: cluster/infrastructure/cert-manager
         helm: 
             releaseName: cert-manager
             valuesFiles: 

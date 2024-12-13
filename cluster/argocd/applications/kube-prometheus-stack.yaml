@@ -8,7 +8,7 @@ spec:
     source:
         repoURL: https://github.com/michaelbui99/homelab
         targetRevision: HEAD
-        path: cluster/argocd/infrastructure/prometheus
+        path: cluster/infrastructure/prometheus
         helm:
             releaseName: prometheus
             valueFiles:
