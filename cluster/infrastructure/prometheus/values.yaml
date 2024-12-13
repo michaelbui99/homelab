@@ -1,9 +1,13 @@
 kube-prometheus-stack:
   grafana:
     ingress:
+      annotations:
+        cert-manager.io/cluster-issuer: le-acme
       enabled: true
-    grafana:
-      ini:
-        server:
-          domain: "grafana.michaelbui.dk"
-          root_url: "%(protocol)s://%(domain)s:%(http_port)s"
+      ingressClassName: nginx
+      hosts:
+        - "grafana.michaelbui.dk"
+      tls:
+        - secretName: le-grafana-michaelbui-dk
+          hosts: 
+            - grafana.michaelbui.dk
