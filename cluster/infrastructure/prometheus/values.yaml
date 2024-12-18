@@ -18,6 +18,8 @@ kube-prometheus-stack:
         cert-manager.io/cluster-issuer: le-acme
       hosts:
         - "prometheus.michaelbui.dk"
+      paths: 
+      - /
       tls:
         - secretName: le-prometheus-michaelbui-dk
           hosts: 
