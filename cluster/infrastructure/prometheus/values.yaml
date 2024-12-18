@@ -11,3 +11,14 @@ kube-prometheus-stack:
         - secretName: le-grafana-michaelbui-dk
           hosts: 
             - grafana.michaelbui.dk
+  prometheus: 
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: le-acme
+      hosts:
+        - "prometheus.michaelbui.dk"
+      tls:
+        - secretName: le-prometheus-michaelbui-dk
+          hosts: 
+            - prometheus.michaelbui.dk
