@@ -5,9 +5,18 @@
     - name: Install open-iscsi
       ansible.builtin.dnf:
         name:
-          - open-iscsi
+          - iscsi-initiator-utils
         state: present
 
+    - name: Post install
+      ansible.builtin.shell: |
+        echo "InitiatorName=$(/sbin/iscsi-iname)" > /etc/iscsi/initiatorname.iscsi
+
+    - name: Enable iscsid
+      ansible.builtin.service:
+        name: iscsid
+        enabled: true
+        state: started
     - name: Install NFSv4 cLient
       ansible.builtin.dnf:
         name:
