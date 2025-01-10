@@ -1,5 +1,5 @@
 longhorn:
-  ingres:
+  ingress:
     enabled: true
     ingressClassName: "nginx"
     host: "longhorn.michaelbui.dk"
