@@ -6,6 +6,19 @@ Files related to my mini homelab consisting of a Lenovo M900 Tiny (i5-6500T | 16
 
 3 VMs are currently provisioned. The 3 VMs forms a kubernetes cluster (1 control plane node and 2 worker nodes) administered using kubeadm.
 
+## Repository structure
+* ansible
+    * Contains ansible inventory and playbooks for common tasks required for operating the Kubernetes cluster
+* cluster
+    * contains IaC source code (Helm Charts, ArgoCD Applications etc.) for the cluster. All applications in the cluster should be deployed by creating a manifest in this folder.
+
+## Deployment
+All deployments are handled through ArgoCD
+![Deployment](./doc/cd.png)
+
+The Apps of Apps pattern has been used to automate the deployments.
+![Apps of Apps](./doc/apps_of_apps.png)
+
 ## Technologies
 
 List of some of the techonologies deployed to the cluster:
