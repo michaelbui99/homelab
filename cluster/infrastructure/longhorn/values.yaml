@@ -1,0 +1,10 @@
+longhorn:
+  ingres:
+    enabled: true
+    ingressClassName: "nginx"
+    host: "longhorn.michaelbui.dk"
+    tls: true
+    tlsSecret: le-longhorn-michaelbui-dk
+    path: "/longhorn"
+    annotations:
+      cert-manager.io/cluster-issuer: "le-acme"
