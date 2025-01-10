@@ -8,3 +8,6 @@ longhorn:
     path: "/longhorn"
     annotations:
       cert-manager.io/cluster-issuer: "le-acme"
+
+  preUpgradeChecker:
+    jobEnabled: false
