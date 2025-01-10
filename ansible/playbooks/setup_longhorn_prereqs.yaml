@@ -11,6 +11,7 @@
     - name: Post install
       ansible.builtin.shell: |
         echo "InitiatorName=$(/sbin/iscsi-iname)" > /etc/iscsi/initiatorname.iscsi
+        modprobe iscsi_tcp
 
     - name: Enable iscsid
       ansible.builtin.service:
