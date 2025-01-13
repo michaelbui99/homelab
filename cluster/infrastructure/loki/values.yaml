@@ -43,6 +43,7 @@ grafana-loki:
         - host: gateway.loki.michaelbui.dk
           paths:
             - path: /
+              pathType: Prefix
       tls:
         - secretName: gateway-loki-michaelbui-dk
           hosts:
