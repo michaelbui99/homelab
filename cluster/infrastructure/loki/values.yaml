@@ -1,0 +1,12 @@
+ingress-nginx:
+  controller:
+    enableAnnotationValidations: true
+    enableCustomResources: true
+    extraArgs:
+      enable-ssl-passthrough: ""
+    service:
+      enabled: true
+      type: LoadBalancer
+  ingressClassResource:
+    default: true
+  
