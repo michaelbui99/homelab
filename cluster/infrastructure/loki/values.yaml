@@ -27,7 +27,7 @@ grafana-loki:
   read:
     replicas: 1
   write:
-    replicas: 2 # To ensure data durability with replication
+    replicas: 1 # To ensure data durability with replication
 
   # Enable minio for storage
   minio:
