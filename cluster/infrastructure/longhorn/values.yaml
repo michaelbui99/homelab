@@ -11,3 +11,6 @@ longhorn:
 
   preUpgradeChecker:
     jobEnabled: false
+
+  persistence:
+    defaultClassReplicaCount: 2
