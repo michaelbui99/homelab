@@ -1,0 +1,13 @@
+headlamp:
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: "le-acme"
+    ingressClassName: nginx
+    hosts:
+      - headlamp.michaelbui.dk
+    tls:
+      - secretName: headlamp-michaelbui-dk
+        hosts:
+          - headlamp.michaelbui.dk
+
