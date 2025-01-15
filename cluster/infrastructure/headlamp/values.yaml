@@ -5,7 +5,10 @@ headlamp:
       cert-manager.io/cluster-issuer: "le-acme"
     ingressClassName: nginx
     hosts:
-      - headlamp.michaelbui.dk
+      - host: headlamp.michaelbui.dk
+        paths:
+          - path: /
+            type: Prefix
     tls:
       - secretName: headlamp-michaelbui-dk
         hosts:
