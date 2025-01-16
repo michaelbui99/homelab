@@ -1,4 +1,10 @@
 headlamp:
+  config:
+    oidc:
+      secret:
+        secret:
+          create: false
+          name: oidc
   ingress:
     enabled: true
     annotations:
