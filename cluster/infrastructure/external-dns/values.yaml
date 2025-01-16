@@ -2,16 +2,11 @@ external-dns:
   provider:
     name: cloudflare
   env:
-    - name: CF_API_KEY
+    - name: CF_API_TOKEN
       valueFrom:
         secretKeyRef:
           name: cloudflare-api-key
           key: apiKey
-    - name: CF_API_EMAIL
-      valueFrom:
-        secretKeyRef:
-          name: cloudflare-api-key
-          key: email
   txtOwnerId: mibui-homelab
   txtPrefix: TXT
   labelFilter: "dns-create: `true`"
