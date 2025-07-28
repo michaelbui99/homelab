@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: actual
+  namespace: actual
+  annotations:
+  labels:
+    app: actual
+spec:
+  selector:
+    app: actual
+  ports:
+  - protocol: TCP
+    port: 5006
+    targetPort: 5006

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: actual
+  labels:
+    app: actual
+  name: actual
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: actual
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: actual
+    spec:
+      containers:
+      - image: docker.io/actualbudget/actual-server:latest
+        name: actual-server
+        ports: 
+        - containerPort: 5006
+        volumeMounts: 
+        - name: actual-storage
+          mountPath: /data
+      volumes: 
+      - name: actual-storage
+        persistentVolumeClaim:
+        claimName: actual-pvc

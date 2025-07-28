@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: actual-http
+  namespace: actual
+  annotations:
+    cert-manager.io/cluster-issuer: le-acme
+    dns-create: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: actual.michaelbui.dk
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: actual
+            port:
+              number: 5006
+  tls:
+  - hosts:
+    - actual.michaelbui.dk
+    secretName: le-cert-actual-michaelbui-dk
