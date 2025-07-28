@@ -27,6 +27,13 @@ spec:
         env:
         - name: ACTUAL_PORT
           value: 5006
+        livenessProbe:
+          exec: 
+            command: 
+            - CMD-SHELL
+            - "node src/scripts/health-check.js"
+          periodSeconds: 60
+
       volumes: 
       - name: actual-storage
         persistentVolumeClaim:
