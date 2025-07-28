@@ -1,0 +1,13 @@
+- name: Install tools
+  hosts: allhosts
+  become: true
+  become_user: root
+  tasks:
+      - name: Install yq
+        ansible.builtin.dnf:
+            name: yq
+            state: present
+      - name: Install jq
+        ansible.builtin.dnf:
+            name: jq
+            state: present
