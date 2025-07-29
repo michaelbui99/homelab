@@ -1,5 +1,5 @@
 - name: Install containerd runtime
-  hosts: allhosts
+  hosts: "{{ target_hosts | default('allhosts') }}"
   become: true
   vars:
       platform: "linux-amd64"
@@ -33,7 +33,7 @@
             systemctl enable --now containerd
 
 - name: Install runc
-  hosts: allhosts
+  hosts: "{{ target_hosts | default('allhosts') }}"
   become: true
   vars:
       architecture: "amd64"
@@ -54,7 +54,7 @@
             state: absent
 
 - name: install CNI plugins
-  hosts: allhosts
+  hosts: "{{ target_hosts | default('allhosts') }}"
   become: true
   vars:
       platform: "linux-amd64"
@@ -82,7 +82,7 @@
             state: absent
 
 - name: Start containerd
-  hosts: allhosts
+  hosts: "{{ target_hosts | default('allhosts') }}"
   become: true
   tasks:
       - name: start service

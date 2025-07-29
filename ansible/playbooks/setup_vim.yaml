@@ -1,5 +1,5 @@
 - name: Setup vim
-  hosts: allhosts
+  hosts: "{{ target_hosts | default('allhosts') }}"
   vars:
       vimrc: "{{ ansible_env.HOME }}/.vimrc"
   tasks:

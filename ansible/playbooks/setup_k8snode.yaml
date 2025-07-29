@@ -1,6 +1,6 @@
 # NOTE: (mibui 2024-04-27) This playbook will not be responsible for setting up a appropriate container runtime.
 - name: Setup kubeadm tooling
-  hosts: allhosts
+  hosts: "{{ target_hosts | default('allhosts') }}"
   become: true
   tasks:
       - name: set SELinux to permissive mode

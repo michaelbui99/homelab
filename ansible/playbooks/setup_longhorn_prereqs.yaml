@@ -1,5 +1,5 @@
 - name: Setup Longhorn Prerequisites
-  hosts: allhosts
+  hosts: "{{ target_hosts | default('allhosts') }}"
   become: true
   tasks:
     - name: Install open-iscsi

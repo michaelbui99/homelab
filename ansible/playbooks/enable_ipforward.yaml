@@ -1,5 +1,5 @@
 - name: Enable kernal IP forwarding
-  hosts: allhosts
+  hosts: "{{ target_hosts | default('allhosts') }}"
   become: true
   tasks:
       - name: enable

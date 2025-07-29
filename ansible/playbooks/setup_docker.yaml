@@ -1,5 +1,5 @@
 - name: Setup Docker
-  hosts: allhosts
+  hosts: "{{ target_hosts | default('allhosts') }}"
   become: true
   tasks:
       - name: remove old versions

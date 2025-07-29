@@ -1,5 +1,5 @@
 - name: Setup go
-  hosts: allhosts
+  hosts: "{{ target_hosts | default('allhosts') }}"
   become: true
   vars:
       go_tar: "go1.22.2.linux-amd64.tar.gz"
@@ -34,7 +34,7 @@
             state: absent
 
 - name: Setup cri-dockerd
-  hosts: allhosts
+  hosts: "{{ target_hosts | default('allhosts') }}"
   become: true
   vars:
       clonedir: "{{ ansible_env.HOME }}/cri-dockerd"

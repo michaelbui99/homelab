@@ -1,6 +1,6 @@
 # NOTE: (mibui 2024-04-27) Swap must be disabled for kubelet to work correctly
 - name: Disable swap
-  hosts: allhosts
+  hosts: "{{ target_hosts | default('allhosts') }}"
   become: true
   tasks:
       # NOTE: (mibui 2024-04-28) Fedora enables swap on ZRAM by default, so we need to uninstall it
