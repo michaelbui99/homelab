@@ -18,4 +18,4 @@ spec:
       - monitoring
   selector:
     matchLabels:
-      app.kubernetes.io/name: prometheus-node-exporter
+      jobLabel: node-exporter
