@@ -9,9 +9,11 @@ kube-prometheus-stack:
         - "grafana.michaelbui.dk"
       tls:
         - secretName: le-grafana-michaelbui-dk
-          hosts: 
+          hosts:
             - grafana.michaelbui.dk
-  prometheus: 
+  prometheus:
+    prometheusSpec:
+      serviceMonitorSelector: {}
     ingress:
       enabled: true
       ingressClassName: nginx
@@ -19,12 +21,11 @@ kube-prometheus-stack:
         cert-manager.io/cluster-issuer: le-acme
       hosts:
         - "prometheus.michaelbui.dk"
-      paths: 
-      - /
+      paths:
+        - /
       tls:
         - secretName: le-prometheus-michaelbui-dk
-          hosts: 
+          hosts:
             - prometheus.michaelbui.dk
   prometheus-node-exporter:
     releaseLabel: false
-
