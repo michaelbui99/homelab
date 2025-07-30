@@ -25,3 +25,6 @@ kube-prometheus-stack:
         - secretName: le-prometheus-michaelbui-dk
           hosts: 
             - prometheus.michaelbui.dk
+  prometheus-node-exporter:
+    releaseLabel: false
+
