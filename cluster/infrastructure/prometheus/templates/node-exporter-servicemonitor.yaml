@@ -4,6 +4,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: kube-prometheus-stack
     app.kubernetes.io/name: prometheus-node-exporter
+    release: prometheus
   name: prometheus-node-exporter
   namespace: monitoring
 spec:
