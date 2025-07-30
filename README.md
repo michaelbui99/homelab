@@ -14,10 +14,10 @@ Files related to my mini homelab consisting of a Lenovo M900 Tiny (i5-6500T | 16
 
 ## Deployment
 All deployments are handled through ArgoCD
-![Deployment](./doc/cd.png)
+![Deployment](./docs/cd.png)
 
 The Apps of Apps pattern has been used to automate the deployments.
-![Apps of Apps](./doc/apps_of_apps.png)
+![Apps of Apps](./docs/apps_of_apps.png)
 
 ## Technologies
 
@@ -31,8 +31,8 @@ List of some of the techonologies deployed to the cluster:
 ### ArgoCD
 
 ArgoCD is used as GitOps CD tool in the cluster. The current workflow is to push manifests into `<PROJECT>/cluster/<APP_NAME>/` and then synchronize manually. ArgoCD will trigger reconciliation of desired cluster state vs actual cluster state upon sychronization.
-![ArgoCD Apps](./doc/argocd_apps.png)
-![ArgoCD App Example](./doc/argocd_app_example.png)
+![ArgoCD Apps](./docs/argocd_apps.png)
+![ArgoCD App Example](./docs/argocd_app_example.png)
 
 ### MetalLB
 
@@ -49,4 +49,4 @@ The current deployed Ingress Controller is the NGINX Ingress Controller which de
 
 ## Network
 
-![Network](./doc/network.png)
+![Network](./docs/network.png)
