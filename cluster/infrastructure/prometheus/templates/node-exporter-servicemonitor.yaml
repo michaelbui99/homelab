@@ -9,9 +9,10 @@ metadata:
   namespace: monitoring
 spec:
   endpoints:
-    - interval: 10m
+    - interval: 3m
       path: /metrics
-      targetPort: 8080
+      targetPort: 9100
+      scheme: http
   namespaceSelector:
     matchNames:
       - monitoring
