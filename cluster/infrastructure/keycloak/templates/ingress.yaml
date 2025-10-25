@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: le-acme
+    dns-create: "true"
+  name: keycloak-http
+  namespace: keycloak
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: keycloak.michaelbui.dk
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+                service:
+                  name: keycloak
+                  port:
+                    name: 8080
+  tls:
+    - hosts:
+        - keycloak.michaelbui.dk
+      secretName: keycloak.michaelbui.dk-tls
