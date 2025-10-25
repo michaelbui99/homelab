@@ -8,14 +8,14 @@ spec:
   source:
     repoURL: https://github.com/michaelbui99/homelab
     targetRevision: HEAD
-    path: cluster/infrastructure/keycloak
+    path: cluster/keycloak
     helm:
       releaseName: keycloak
       valueFiles:
         - values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: infrastructure
+    namespace: keycloak
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
